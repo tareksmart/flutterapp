@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screens/forms/first_screen.dart';
+import 'package:flutter_screens/forms/home_screen.dart';
 import 'package:flutter_screens/forms/second_screen.dart';
 
 class myMenuItem extends StatelessWidget {
@@ -13,7 +14,7 @@ class myMenuItem extends StatelessWidget {
           child: ListTile(
             title: Text('first screen'),
             onTap: () {
-              Navigator.pushNamed(context, '/first');
+             HomeScreen()!=null? Navigator.pushNamed(context, '/first'):CircularNotchedRectangle();
             },
           ),
         ),
@@ -22,6 +23,8 @@ class myMenuItem extends StatelessWidget {
             title: Text('second screen'),
             onTap: () {
               Navigator.pushNamed(context, '/second');
+              
+              
             },
           ),
         ),
