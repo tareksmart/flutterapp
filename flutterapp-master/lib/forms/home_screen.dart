@@ -1,3 +1,8 @@
+// import 'dart:html';
+
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screens/menus/my_drawer.dart';
 import 'package:http/http.dart' as http;
@@ -8,9 +13,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final List<String> myList = [];
   @override
   Widget build(BuildContext context) {
-    final List<String> myList = [];
     //   'https://via.placeholder.com/150/0000FF/808080 ?Text=Digital.comC/O https://placeholder.com/',
     //   'https://via.placeholder.com/150/FF0000/FFFFFF?Text=Down.comC/O https://placeholder.com/',
     //   'https://via.placeholder.com/150/000000/FFFFFF/?text=IPaddress.netC/O https://placeholder.com/'
@@ -61,7 +66,16 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  _addFoto() {
-    print('u clicked me');
+  _addFoto() async {
+    int num = Random().nextInt(1000);
+    Uri url = Uri.parse('http://jsonplaceholder.typicode.com/photos/$num');
+
+    var respons = await http.get(url);
+    var parsedRespons = jsonDecode(respons.body);
+    setState(() {
+      myList.add(parsedRespons['url']);
+    });
+
+    print(myList.length);
   }
 }
