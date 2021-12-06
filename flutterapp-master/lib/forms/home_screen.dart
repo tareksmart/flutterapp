@@ -5,6 +5,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screens/menus/my_drawer.dart';
+import 'package:flutter_screens/model/photo.dart';
 import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
@@ -72,8 +73,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
     var respons = await http.get(url);
     var parsedRespons = jsonDecode(respons.body);
+  //String url;
+    Photo photo=new Photo(id:parsedRespons['id'],title:parsedRespons['title'],url:parsedRespons['url']
+    ,thumbnailUrl:parsedRespons['thumbnailUrl']);
     setState(() {
-      myList.add(parsedRespons['url']);
+      myList.add(photo.url);
+      print('title'+photo.title);
+      print('title'+photo.url);
     });
 
     print(myList.length);
